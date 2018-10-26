@@ -1,4 +1,4 @@
-# Turn on lights at sunset
+# Turn on lights 15 min after sunset
 - alias: "Lights on 15 mins after sunset"
   trigger:
     platform: sun

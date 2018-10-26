@@ -10,4 +10,5 @@
 .google.token
 ip_bans.yaml
 secrets.yaml
-known_devices.yaml
+known_devices.yam
+._*l
