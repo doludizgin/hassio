@@ -1,0 +1,88 @@
+# Turn on lights at sunset
+- alias: "Lights on 15 mins after sunset"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.schutting
+          - light.buitenkeuken
+          - light.yeelight_rgb_7811dce133d6
+          - light.yeelight_rgb_7811dca21474
+          - light.yeelight_rgb_7811dce10138
+
+# turns it off an hour after sunrise
+- alias: "Lights off 30 mins before sunrise"
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "-00:30:00"
+  action: 
+    - service: light.turn_off
+      entity_id: 
+          - light.schutting
+
+
+# Turn off lights at 23:45
+- alias: "Lights off at 23:45"
+  trigger:
+    - platform: time
+      at: "23:45"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+        - sun
+  action:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.yeelight_rgb_7811dce133d6
+          - light.yeelight_rgb_7811dca21474
+          - light.yeelight_rgb_7811dce10138
+
+# Turn off buitenkeuken at 02:30
+- alias: "buitenkeuken off at 02:30"
+  trigger:
+    - platform: time
+      at: "01:30"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.buitenkeuken
+
+# Turn on morning lights
+- alias: "Lights on 1 hour before sunrise"
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "-01:00:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.yeelight_rgb_7811dce133d6
+          - light.yeelight_rgb_7811dca21474
+          - light.yeelight_rgb_7811dce10138
+
+# turns it off an hour after sunrise
+- alias: "Lights off 10 mins before sunrise"
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "-00:30:00"
+  action: 
+    - service: light.turn_off
+      entity_id: 
+          - light.yeelight_rgb_7811dce133d6
+          - light.yeelight_rgb_7811dca21474
+          - light.yeelight_rgb_7811dce10138

@@ -1,0 +1,138 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 51.904915
+  longitude: 4.399553
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret http_password
+  base_url: https://semihassio.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+#History graphs
+history_graph:
+  gr1:
+    name: Gasverbruik vandaag
+    entities:
+      - sensor.gas_today
+    hours_to_show: 24
+    refresh: 10
+  gr2:
+    name: Stroomverbruik vandaag
+    entities:
+      - sensor.power_today
+    hours_to_show: 24
+    refresh: 10
+  
+
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+  - platform: nzbget
+    host: nzbget.hyperimes.com
+    port: 443
+    ssl:  True
+    username: !secret nzbget_username
+    password: !secret nzbget_password
+    monitored_variables:
+      - remaining_size
+      - download_rate
+      - free_disk_space
+  - platform: buienradar
+    monitored_conditions:
+      - symbol
+      - humidity
+      - temperature
+      - windspeed
+      - pressure
+      - rainchance_1d
+      - sunchance_1d
+      - groundtemperature
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+#RFXCOMDevice
+rfxtrx:
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A12IY010-if00-port0
+  debug: False
+
+#RFXCOMSwitch
+switch:
+  platform: rfxtrx
+  automatic_add: True
+
+#Lights
+light:
+  - platform: rfxtrx
+    automatic_add: True
+    devices:
+      0b11000001293aae02010f70:
+        name: Schutting
+      0b11000001293aae04010f50:
+        name: BuitenKeuken
+  - platform: yeelight
+
+#Toon
+toon:
+  username: !secret toon_username
+  password: !secret toon_password
+
+
+
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

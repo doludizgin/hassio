@@ -1,0 +1,51 @@
+default_view:
+  name: DEFAULT
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.woonkamer
+    - group.tuin
+    - group.hyperimes
+    - group.toon
+    - group.weather
+
+woonkamer:
+    name: Woonkamer
+    entities:
+      - light.yeelight_rgb_7811dca21474
+      - light.yeelight_rgb_7811dce10138
+      - light.yeelight_rgb_7811dce133d6
+
+tuin:
+    name: Tuin
+    entities:
+      - light.Schutting
+      - light.buitenkeuken
+
+hyperimes:
+  name: Hyperimes
+  entities:
+    - sensor.nzbget_speed
+    - sensor.nzbget_queue_size
+    - sensor.nzbget_disk_free
+
+
+toon:
+  name: Toon
+  entities:
+    - sensor.gas_today
+    - sensor.gas_current
+    - sensor.power_current
+    - sensor.power_today
+
+weather:
+  name: Weer
+  entities:
+    - sensor.br_symbol
+    - sensor.br_temperature
+    - sensor.br_humidity
+    - sensor.br_wind_speed
+    - sensor.br_pressure
+    - sensor.br_sunchance_1d
+    - sensor.br_rainchance_1d
+    - sensor.br_ground_temperature

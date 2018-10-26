@@ -1,0 +1,32 @@
+sensor.gas_current:
+  friendly_name: Huidig gasverbruik
+sensor.gas_today:
+  friendly_name: Gasverbruik vandaag
+sensor.power_current:
+  friendly_name: Huidig stroomverbruik
+sensor.power_today:
+  friendly_name: Stroomverbruik vandaag
+sensor.br_symbol:
+  friendly_name: Huidig
+sensor.br_temperature:
+  friendly_name: Temperatuur
+sensor.br_humidity:
+  friendly_name: Luchtvochtigheid
+sensor.br_wind_speed:
+  friendly_name: Windsnelheid
+sensor.br_pressure:
+  friendly_name: Luchtdruk
+sensor.br_sunchance_1d:
+  friendly_name: Kans op zon
+sensor.br_rainchance_1d:
+  friendly_name: Kans op regen
+sensor.br_ground_temperature:
+  friendly_name: Grondtemperatuur
+light.yeelight_rgb_7811dce133d6:
+  friendly_name: Stalamp
+light.yeelight_rgb_7811dca21474:
+  friendly_name: Eettafel1
+light.yeelight_rgb_7811dce10138:
+  friendly_name: Eettafel2
+group.all_automations:
+  hidden: false
